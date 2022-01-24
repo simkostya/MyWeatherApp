@@ -147,33 +147,26 @@ class WeatherNetworkManager : NetworkManagerProtocol {
                                         
                     if fetchedData.count == totalData {
                         
-                        if currentDayTemp.hourlyForecast?.count ?? 0 > 0 {
-                            forecastmodelArray.append(currentDayTemp)
-                        }
+                        guard currentDayTemp.hourlyForecast?.count ?? 0 > 0  else { return }
+                        forecastmodelArray.append(currentDayTemp)
                         
-                        if secondDayTemp.hourlyForecast?.count ?? 0 > 0 {
-                            forecastmodelArray.append(secondDayTemp)
-                        }
+                        guard secondDayTemp.hourlyForecast?.count ?? 0 > 0  else { return }
+                        forecastmodelArray.append(secondDayTemp)
                         
-                        if thirdDayTemp.hourlyForecast?.count ?? 0 > 0 {
-                            forecastmodelArray.append(thirdDayTemp)
-                        }
+                        guard thirdDayTemp.hourlyForecast?.count ?? 0 > 0  else { return }
+                        forecastmodelArray.append(thirdDayTemp)
                         
-                        if fourthDayTemp.hourlyForecast?.count ?? 0 > 0 {
-                            forecastmodelArray.append(fourthDayTemp)
-                        }
+                        guard fourthDayTemp.hourlyForecast?.count ?? 0 > 0  else { return }
+                        forecastmodelArray.append(fourthDayTemp)
                         
-                        if fifthDayTemp.hourlyForecast?.count ?? 0 > 0 {
-                            forecastmodelArray.append(fifthDayTemp)
-                        }
+                        guard fifthDayTemp.hourlyForecast?.count ?? 0 > 0  else { return }
+                        forecastmodelArray.append(fifthDayTemp)
                         
-                        if sixthDayTemp.hourlyForecast?.count ?? 0 > 0 {
-                            forecastmodelArray.append(sixthDayTemp)
-                        }
-                                                
-                        if forecastmodelArray.count <= 6 {
-                            completion(forecastmodelArray)
-                        }
+                        guard sixthDayTemp.hourlyForecast?.count ?? 0 > 0  else { return }
+                        forecastmodelArray.append(sixthDayTemp)
+                        
+                        guard forecastmodelArray.count <= 6  else { return }
+                        completion(forecastmodelArray)
                     }
                 }
             } catch {

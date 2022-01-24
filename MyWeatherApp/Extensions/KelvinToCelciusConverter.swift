@@ -8,8 +8,7 @@
 import UIKit
 
 extension Float {
-    func truncate(places : Int)-> Float
-    {
+    func truncate(places : Int)-> Float {
         return Float(floor(pow(10.0, Float(places)) * self)/pow(10.0, Float(places)))
     }
     

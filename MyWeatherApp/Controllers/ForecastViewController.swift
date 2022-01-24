@@ -27,10 +27,8 @@ class ForecastViewController : UIViewController, UICollectionViewDataSource, UIC
         view.addSubview(collectionView)
         setupViews()
         let city = UserDefaults.standard.string(forKey: "SelectedCity") ?? ""
-//        print("City Forecast:", city)
         networkManager.fetchNextFiveWeatherForecast(city: city) { (forecast) in
             self.forecastData = forecast
-//            print("Total Count:", forecast.count)
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }

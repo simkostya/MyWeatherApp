@@ -37,18 +37,15 @@ extension UIImageView {
         }
     }
     
-    //Fetch image profile from a URL Using URLSession and DispatchQueue main async
     func loadImageUsingCacheWithUrlString(urlString:String) {
         
         self.image = nil
         
-        //Check cache for image first
         if let cacheImage = cachedImages.object(forKey: urlString as NSString)  {
             self.image = cacheImage
             return
         }
         
-        //Otherwise fire off a new download
         guard let url = URL(string: urlString) else { return }
         let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             
