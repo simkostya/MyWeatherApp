@@ -268,7 +268,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.navigationController?.navigationBar.isTranslucent = true
         navigationItem.backBarButtonItem = UIBarButtonItem(
             title: "", style: .plain, target: nil, action: nil)
-        
     }
 }
 
