@@ -9,7 +9,7 @@ import UIKit
 import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
-    
+    let once = Once()
     let networkManager = WeatherNetworkManager()
     
     let currentLocation: UILabel = {
@@ -32,8 +32,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let df = DateFormatter()
         df.dateFormat = "dd MMM yyyy"
         let dateString = df.string(from: date)
-        
-        
         
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -73,7 +71,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         return img
     }()
     
-    
     let maxTemp: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -83,6 +80,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         return label
     }()
+    
     let minTemp: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +91,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         return label
     }()
     
-    var locationManager = CLLocationManager()
+    var locationManager:CLLocationManager!
     var currentLoc: CLLocation?
     var stackView : UIStackView!
     var latitude : CLLocationDegrees!
@@ -105,66 +103,86 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .done, target: self, action: #selector(handleAddPlaceButton)), UIBarButtonItem(image: UIImage(systemName: "thermometer"), style: .done, target: self, action: #selector(handleShowForecast)),UIBarButtonItem(image: UIImage(systemName: "arrow.clockwise"), style: .done, target: self, action: #selector(handleRefresh))]
         
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
         transparentNavigationBar()
         
         setupViews()
         layoutViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        once.run {
+            determineMyCurrentLocation()
+        }
+    }
+    
+    func determineMyCurrentLocation() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+            locationManager.startUpdatingHeading()
+        }
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0] as CLLocation
+        
         manager.stopUpdatingLocation()
         manager.delegate = nil
+        self.loadDataUsingCoordinates(lat: "\(userLocation.coordinate.latitude)", lon: "\(userLocation.coordinate.longitude)")
+
         let location = locations[0].coordinate
         latitude = location.latitude
         longitude = location.longitude
-//        print("Long", longitude.description)
-//        print("Lat", latitude.description)
         loadDataUsingCoordinates(lat: latitude.description, lon: longitude.description)
     }
     
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error \(error)")
+    }
+    
     func loadData(city: String) {
-                networkManager.fetchCurrentWeather(city: city) { (weather) in
-//                     print("Current Temperature", weather.main.temp.kelvinToCeliusConverter())
-                     let formatter = DateFormatter()
-                     formatter.dateFormat = "dd MMM yyyy" //yyyy
-                     let stringDate = formatter.string(from: Date(timeIntervalSince1970: TimeInterval(weather.dt)))
-        
-                     DispatchQueue.main.async {
-                         self.currentTemperatureLabel.text = (String(weather.main.temp.kelvinToCeliusConverter()) + "°C")
-                         self.currentLocation.text = "\(weather.name ?? "") , \(weather.sys.country ?? "")"
-                         self.tempDescription.text = weather.weather[0].description
-                         self.currentTime.text = stringDate
-                         self.minTemp.text = ("Min: " + String(weather.main.temp_min.kelvinToCeliusConverter()) + "°C" )
-                         self.maxTemp.text = ("Max: " + String(weather.main.temp_max.kelvinToCeliusConverter()) + "°C" )
-                         self.tempSymbol.loadImageFromURL(url: "http://openweathermap.org/img/wn/\(weather.weather[0].icon)@2x.png")
-                         UserDefaults.standard.set("\(weather.name ?? "")", forKey: "SelectedCity")
-                     }
-                 }
+        networkManager.fetchCurrentWeather(city: city) { (weather) in
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd MMM yyyy" //yyyy
+            let stringDate = formatter.string(from: Date(timeIntervalSince1970: TimeInterval(weather.dt)))
+            
+            DispatchQueue.main.async {
+                self.currentTemperatureLabel.text = (String(weather.main.temp.kelvinToCeliusConverter()) + "°C")
+                self.currentLocation.text = "\(weather.name ?? "") , \(weather.sys.country ?? "")"
+                self.tempDescription.text = weather.weather[0].description
+                self.currentTime.text = stringDate
+                self.minTemp.text = ("Min: " + String(weather.main.temp_min.kelvinToCeliusConverter()) + "°C" )
+                self.maxTemp.text = ("Max: " + String(weather.main.temp_max.kelvinToCeliusConverter()) + "°C" )
+                self.tempSymbol.loadImageFromURL(url: "http://openweathermap.org/img/wn/\(weather.weather[0].icon)@2x.png")
+                UserDefaults.standard.set("\(weather.name ?? "")", forKey: "SelectedCity")
+            }
+        }
     }
     
     func loadDataUsingCoordinates(lat: String, lon: String) {
-                networkManager.fetchCurrentLocationWeather(lat: lat, lon: lon) { (weather) in
-//                     print("Current Temperature", weather.main.temp.kelvinToCeliusConverter())
-                     let formatter = DateFormatter()
-                     formatter.dateFormat = "dd MMM yyyy"
-                     let stringDate = formatter.string(from: Date(timeIntervalSince1970: TimeInterval(weather.dt)))
-        
-                     DispatchQueue.main.async {
-                         self.currentTemperatureLabel.text = (String(weather.main.temp.kelvinToCeliusConverter()) + "°C")
-                         self.currentLocation.text = "\(weather.name ?? "") , \(weather.sys.country ?? "")"
-                         self.tempDescription.text = weather.weather[0].description
-                         self.currentTime.text = stringDate
-                         self.minTemp.text = ("Min: " + String(weather.main.temp_min.kelvinToCeliusConverter()) + "°C" )
-                         self.maxTemp.text = ("Max: " + String(weather.main.temp_max.kelvinToCeliusConverter()) + "°C" )
-                         self.tempSymbol.loadImageFromURL(url: "http://openweathermap.org/img/wn/\(weather.weather[0].icon)@2x.png")
-                        UserDefaults.standard.set("\(weather.name ?? "")", forKey: "SelectedCity")
-                     }
-                }
+        networkManager.fetchCurrentLocationWeather(lat: lat, lon: lon) { (weather) in
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd MMM yyyy"
+            let stringDate = formatter.string(from: Date(timeIntervalSince1970: TimeInterval(weather.dt)))
+            
+            DispatchQueue.main.async {
+                self.currentTemperatureLabel.text = (String(weather.main.temp.kelvinToCeliusConverter()) + "°C")
+                self.currentLocation.text = "\(weather.name ?? "") , \(weather.sys.country ?? "")"
+                self.tempDescription.text = weather.weather[0].description
+                self.currentTime.text = stringDate
+                self.minTemp.text = ("Min: " + String(weather.main.temp_min.kelvinToCeliusConverter()) + "°C" )
+                self.maxTemp.text = ("Max: " + String(weather.main.temp_max.kelvinToCeliusConverter()) + "°C" )
+                self.tempSymbol.loadImageFromURL(url: "http://openweathermap.org/img/wn/\(weather.weather[0].icon)@2x.png")
+                UserDefaults.standard.set("\(weather.name ?? "")", forKey: "SelectedCity")
+            }
+        }
     }
     
     func setupViews() {
@@ -223,7 +241,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
         let saveAction = UIAlertAction(title: "Add", style: .default, handler: { alert -> Void in
             let firstTextField = alertController.textFields![0] as UITextField
-//            print("City Name: \(String(describing: firstTextField.text))")
             guard let cityname = firstTextField.text else { return }
             self.loadData(city: cityname)
         })
@@ -237,7 +254,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @objc func handleShowForecast() {
-                self.navigationController?.pushViewController(ForecastViewController(), animated: true)
+        self.navigationController?.pushViewController(ForecastViewController(), animated: true)
     }
     
     @objc func handleRefresh() {
@@ -245,13 +262,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         loadData(city: city)
     }
     
-        func transparentNavigationBar() {
+    func transparentNavigationBar() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         navigationItem.backBarButtonItem = UIBarButtonItem(
             title: "", style: .plain, target: nil, action: nil)
         
+    }
+}
+
+extension UIViewController {
+    class Once {
+        var already: Bool = false
+        func run(block: () -> Void) {
+            guard !already else { return }
+            block()
+            already = true
+        }
     }
 }
 
