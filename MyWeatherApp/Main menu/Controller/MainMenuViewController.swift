@@ -154,13 +154,13 @@ extension MainMenuViewController: AddCityDelegate {
     }
 
     func didFailAddingNewCityWithError(error: Error?) {
-        let errorMessage: String
-        
-        if let strongError = error {
-            errorMessage = strongError.localizedDescription
-        } else {
-            errorMessage = "Something went wrong :<"
-        }
+//        let errorMessage: String
+//        
+//        if let strongError = error {
+//            errorMessage = strongError.localizedDescription
+//        } else {
+//            errorMessage = "Something went wrong :<"
+//        }
     }
 }
 

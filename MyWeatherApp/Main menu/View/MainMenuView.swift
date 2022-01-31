@@ -107,7 +107,6 @@ class MainMenuView: UIView {
         tableView.dropDelegate = tableViewDataSourceDelegate
         self.addSubview(tableView)
 
-//        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refreshWeatherData(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
 

@@ -66,8 +66,6 @@ class CityDetailViewController: UIViewController, CityDetailViewControllerDelega
         backButtonNavBarItem.target = self
         navigationItem.leftBarButtonItem = backButtonNavBarItem
 
-//        weatherManager.delegate = self
-
         if let safeWeatherData = localWeatherData {
             let navBarTitleColor: UIColor = colorThemeComponent.colorTheme.cityDetails.isStatusBarDark ? .black : .white
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navBarTitleColor]
