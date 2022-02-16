@@ -98,6 +98,19 @@ class CityDetailView: UIView, CityDetailViewProtocol {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
+    private var arrowHintButton: UIButton = {
+        let button = UIButton()
+        button.contentMode = .scaleAspectFit
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func buttonAction(sender: UIButton!) {
+        self.scrollView.scrollToView(view: self.weatherQualityInfoView, animated: true)
+        self.scrollView.scrollToView(view: self.topTranslucentBackground, animated: true)
+    }
 
     // MARK: - Screen second part
 
@@ -177,6 +190,7 @@ class CityDetailView: UIView, CityDetailViewProtocol {
         topTranslucentBackground.addSubview(degreeStackView)
         
         topTranslucentBackground.addSubview(arrowHint)
+        topTranslucentBackground.addSubview(arrowHintButton)
 
         scrollContentView.addSubview(secondScreenPartBackground)
         secondScreenPartBackground.addSubview(hourlyCollectionView)
@@ -364,6 +378,11 @@ extension CityDetailView {
         arrowHint.bottomAnchor.constraint(equalTo: topTranslucentBackground.bottomAnchor, constant: -Grid.pt12).isActive = true
         arrowHint.centerXAnchor.constraint(equalTo: topTranslucentBackground.centerXAnchor).isActive = true
         
+        arrowHintButton.heightAnchor.constraint(equalToConstant: Grid.pt40).isActive = true
+        arrowHintButton.widthAnchor.constraint(equalToConstant: Grid.pt40).isActive = true
+        arrowHintButton.bottomAnchor.constraint(equalTo: topTranslucentBackground.bottomAnchor, constant: -Grid.pt12).isActive = true
+        arrowHintButton.centerXAnchor.constraint(equalTo: topTranslucentBackground.centerXAnchor).isActive = true
+        
         degreeStackView.centerYAnchor.constraint(equalTo: topTranslucentBackground.centerYAnchor).isActive = true
         degreeStackView.centerXAnchor.constraint(equalTo: topTranslucentBackground.centerXAnchor).isActive = true
     }
@@ -434,5 +453,27 @@ extension CityDetailView {
         
         gradientBackground.colors = cgColors
         layer.insertSublayer(gradientBackground, at: 0)
+    }
+}
+
+extension UIScrollView {
+
+    func scrollToView(view:UIView, animated: Bool) {
+        if let origin = view.superview {
+            let childStartPoint = origin.convert(view.frame.origin, to: self)
+            self.scrollRectToVisible(CGRect(x:0, y:childStartPoint.y,width: 1,height: self.frame.height), animated: animated)
+        }
+    }
+
+    func scrollToTop(animated: Bool) {
+        let topOffset = CGPoint(x: 0, y: -contentInset.top)
+        setContentOffset(topOffset, animated: animated)
+    }
+
+    func scrollToBottom() {
+        let bottomOffset = CGPoint(x: 0, y: contentSize.height - bounds.size.height + contentInset.bottom)
+        if(bottomOffset.y > 0) {
+            setContentOffset(bottomOffset, animated: true)
+        }
     }
 }
