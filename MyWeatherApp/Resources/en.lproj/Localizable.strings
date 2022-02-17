@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  MyWeatherApp
+
+  Created by Kostya on 2/17/22.
+  
+*/
+
+"day.title" = "Today";
+"cancael.btn" = "Cancel";
+"city.description" = "City";
+"date.label" = "date label";
+"sunrise" = "Sunrise";
+"sunset" = "Sunset";
+"now.title" = "Now";
+"visibility" = "Visibility";
+"pressure" = "Pressure";
+"wind" = "Wind";
+"cloudiness" = "Cloudiness";
+"humidity" = "Humidity";
+"uv.index" = "UV index";
+"feels.like" = "Feels like";
+"your.location" = "Your location";
+
+"overcast.clouds" = "Overcast clouds";
+"clear.sky" = "Clear sky";
+"few.clouds" = "Few clouds";
+"scattered.clouds" = "Scattered clouds";
+"broken.clouds" = "Broken clouds";
+"light.rain" = "Light rain";
+"light.snow" = "Light snow";
+"snow" = "Snow";
+"rain.snow" = "Rain and snow";
+"fog" = "Fog";
+"drizzle" = "Drizzle";
+"thunderstorm" = "Thunderstorm";
+"rain" = "Rain";
+"shower.rain" = "Shower rain";
+"mist" = "Mist";
+"moderate.rain" = "Moderate rain";

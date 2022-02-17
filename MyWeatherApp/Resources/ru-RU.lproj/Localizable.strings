@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  MyWeatherApp
+
+  Created by Kostya on 2/17/22.
+  
+*/
+
+"day.title" = "Сегодня";
+"cancael.btn" = "Отмена";
+"city.description" = "Город";
+"date.label" = "Дата";
+"sunrise" = "Рассвет";
+"sunset" = "Закат";
+"now.title" = "Сейчас";
+"visibility" = "Видимость";
+"pressure" = "Давление";
+"wind" = "Ветер";
+"cloudiness" = "Облачность";
+"humidity" = "Влажность";
+"uv.index" = "УФ-индекс";
+"feels.like" = "Ощущается как";
+"your.location" = "Ваше местоположение";
+
+"overcast.clouds" = "Пасмурно";
+"clear.sky" = "Чистое небо";
+"few.clouds" = "Облачно";
+"scattered.clouds" = "Рассеянные облака";
+"broken.clouds" = "Тучи";
+"light.rain" = "Легкий дождь";
+"light.snow" = "Небольшой снег";
+"snow" = "Снег";
+"rain.snow" = "Дождь и снег";
+"fog" = "Туман";
+"drizzle" = "Морось";
+"thunderstorm" = "Гроза";
+"rain" = "Дождь";
+"shower.rain" = "Проливной дождь";
+"mist" = "Туман";
+"moderate.rain" = "Умеренный дождь";

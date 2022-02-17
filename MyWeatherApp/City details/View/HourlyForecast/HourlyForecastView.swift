@@ -96,7 +96,7 @@ extension HourlyForecastView: UICollectionViewDelegate, UICollectionViewDelegate
             let date = Date(timeIntervalSince1970: TimeInterval(currentHour.dt))
             dateFormatter.dateFormat = "h a"
 
-            cell.topLabel.text = indexPath.row == 0 ? "Now" : dateFormatter.string(from: date)
+            cell.topLabel.text = indexPath.row == 0 ? R.string.localizable.nowTitle() : dateFormatter.string(from: date)
             let conditionId = currentHour.weather[0].id
             let cellImageName = WeatherModel.getConditionNameBy(conditionId: conditionId)
             let iconColor = colorThemeComponent.colorTheme.getDetailReviewIconColorByConditionId(conditionId)
@@ -121,11 +121,11 @@ extension HourlyForecastView: UICollectionViewDelegate, UICollectionViewDelegate
             
             switch sunStete.description {
             case .sunset:
-                cell.bottomLabel.text = "Sunset"
+                cell.bottomLabel.text = R.string.localizable.sunset()
                 cell.imageView.image = UIImage(systemName: K.SystemImageName.sunsetFill,
                                                withConfiguration: imageConfiguration) ?? UIImage()
             case .sunrise:
-                cell.bottomLabel.text = "Sunrise"
+                cell.bottomLabel.text = R.string.localizable.sunrise()
                 cell.imageView.image = UIImage(systemName: K.SystemImageName.sunriseFill,
                                                withConfiguration: imageConfiguration) ?? UIImage()
             }

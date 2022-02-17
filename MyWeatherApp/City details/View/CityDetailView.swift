@@ -232,9 +232,9 @@ class CityDetailView: UIView, CityDetailViewProtocol {
     private func setupActivatedArrowHint(_ isActivated: Bool) {
         let arrowDown = UIImage(systemName: K.SystemImageName.arrowDown) ?? UIImage()
         let arrowUp = UIImage(systemName: K.SystemImageName.arrowUp) ?? UIImage()
-            arrowHint.image = isActivated ? arrowDown : arrowUp
-        }
-
+        arrowHint.image = isActivated ? arrowDown : arrowUp
+    }
+    
     private func updateAlphaViews() {
         // Handle navigation bar appearance according to the scroll view offset
         let targetHeight = (topTranslucentBackground.bounds.height - degreeStackView.bounds.height)
@@ -323,10 +323,47 @@ class CityDetailView: UIView, CityDetailViewProtocol {
             .content
 
         tempLebel.text = newData.temperatureString
-
-        let feelsLikeDescriptionString = newData.description.prefix(1).capitalized + newData.description.dropFirst()
-        descriptionLabel.text = feelsLikeDescriptionString
-
+        
+        let feelsLikeDescriptionString =
+            newData.description.prefix(1).capitalized + newData.description.dropFirst()
+        
+        switch feelsLikeDescriptionString {
+        case ("Overcast clouds"):
+            descriptionLabel.text = R.string.localizable.overcastClouds()
+        case ("Clear sky"):
+            descriptionLabel.text = R.string.localizable.clearSky()
+        case ("Few clouds"):
+            descriptionLabel.text = R.string.localizable.fewClouds()
+        case ("Scattered clouds"):
+            descriptionLabel.text = R.string.localizable.scatteredClouds()
+        case ("Broken clouds"):
+            descriptionLabel.text = R.string.localizable.brokenClouds()
+        case ("Light rain"):
+            descriptionLabel.text = R.string.localizable.lightRain()
+        case ("light snow"):
+            descriptionLabel.text = R.string.localizable.lightSnow()
+        case ("Snow"):
+            descriptionLabel.text = R.string.localizable.snow()
+        case ("Rain and snow"):
+            descriptionLabel.text = R.string.localizable.rainSnow()
+        case ("Fog"):
+            descriptionLabel.text = R.string.localizable.fog()
+        case ("Drizzle"):
+            descriptionLabel.text = R.string.localizable.drizzle()
+        case ("Thunderstorm"):
+            descriptionLabel.text = R.string.localizable.thunderstorm()
+        case ("Rain"):
+            descriptionLabel.text = R.string.localizable.rain()
+        case ("Shower rain"):
+            descriptionLabel.text = R.string.localizable.showerRain()
+        case ("Mist"):
+            descriptionLabel.text = R.string.localizable.mist()
+        case ("Moderate rain"):
+            descriptionLabel.text = R.string.localizable.moderateRain()
+        default:
+            descriptionLabel.text = feelsLikeDescriptionString
+        }
+        
         feelsLikeLabel.text = newData.feelsLikeString
 
         weeklyForecastTableView.reloadData(newData)
@@ -400,7 +437,7 @@ extension CityDetailView {
         topTranslucentBackground.trailingAnchor.constraint(equalTo: scrollContentView.trailingAnchor).isActive = true
         topTranslucentBackground.heightAnchor.constraint(equalToConstant:
                                                             UIScreen.main.bounds.height - hourlyForecastHeightConstant -
-                                                         hourlyTopConstant - Grid.pt40).isActive = true
+                                                            hourlyTopConstant - Grid.pt40).isActive = true
     }
 
     private func setUpScrollView() {

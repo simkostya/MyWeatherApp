@@ -128,7 +128,7 @@ extension AddCityViewController: AddCityViewDelegate {
                 return
             }
             
-            self.addCity(title: placemark.locality ?? "Your location",
+            self.addCity(title: placemark.locality ?? R.string.localizable.yourLocation(),
                          lat: location.coordinate.latitude,
                          long: location.coordinate.longitude)
         }

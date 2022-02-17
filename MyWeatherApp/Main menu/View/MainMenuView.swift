@@ -25,14 +25,14 @@ class MainMenuView: UIView {
     private lazy var currentDateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: Grid.pt16, weight: .medium)
-        label.text = "date label"
+        label.text = R.string.localizable.dateLabel()
         return label
     }()
 
     private lazy var todayLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: Grid.pt32, weight: .bold)
-        label.text = "Today"
+        label.text = R.string.localizable.dayTitle()
         return label
     }()
 

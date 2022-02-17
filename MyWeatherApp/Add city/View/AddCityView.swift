@@ -51,7 +51,7 @@ class AddCityView: UIView {
         textField.textColor = colorThemeComponent.colorTheme.addCityScreen.labelsColor
         textField.tintColor = colorThemeComponent.colorTheme.addCityScreen.labelsColor
         
-        var placeHolder = NSAttributedString(string: "City",
+        var placeHolder = NSAttributedString(string: R.string.localizable.cityDescription(),
                                              attributes: [NSAttributedString.Key.foregroundColor: colorThemeComponent.colorTheme.addCityScreen.placeholderColor])
         textField.attributedPlaceholder = placeHolder
         
@@ -61,7 +61,7 @@ class AddCityView: UIView {
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.accessibilityIdentifier = "AddCityCancelButton"
-        button.setTitle("Cancel", for: .normal)
+        button.setTitle(R.string.localizable.cancaelBtn(), for: .normal)
         button.setTitleColor(colorThemeComponent.colorTheme.addCityScreen.cancelButtonColor, for: .normal)
         button.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
         return button

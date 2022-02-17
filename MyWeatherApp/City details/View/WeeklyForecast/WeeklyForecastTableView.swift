@@ -113,7 +113,7 @@ extension WeeklyForecastTableView: UITableViewDataSource, UITableViewDelegate {
 
         // Make first cell bold
         if indexPath.row == 0 {
-            cell.monthLabel.text = "Today"
+            cell.monthLabel.text = R.string.localizable.dayTitle()
             cell.monthLabel.font = UIFont.systemFont(ofSize: Grid.pt16, weight: .semibold)
         }
 

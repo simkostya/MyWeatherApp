@@ -104,7 +104,7 @@ struct WeatherModel {
     }
 
     var feelsLikeString: String {
-        String(format: "Feels like %.0f°", feelsLike)
+        String(format: "\(R.string.localizable.feelsLike()) %.0f°", feelsLike)
     }
 
     var temperatureString: String {

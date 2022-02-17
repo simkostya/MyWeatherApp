@@ -30,7 +30,7 @@ class WeatherQualityInfoView: UIView {
         qualityItem.imageView.image = UIImage(systemName: K.SystemImageName.sunMaxFill,
                                               withConfiguration: DesignManager.standartImageConfiguration)?.withRenderingMode(.alwaysTemplate)
         qualityItem.tintColor = colorThemeComponent.colorTheme.cityDetails.iconColors.uvIndex
-        qualityItem.titleLabel.text = "UV index"
+        qualityItem.titleLabel.text = R.string.localizable.uvIndex()
         qualityItem.titleLabel.textColor = colorThemeComponent.colorTheme.cityDetails.weatherQuality.labelsColor
         qualityItem.subTitleLabel.text = "-"
         qualityItem.subTitleLabel.textColor = colorThemeComponent.colorTheme.cityDetails.weatherQuality.labelsSecondaryColor
@@ -42,7 +42,7 @@ class WeatherQualityInfoView: UIView {
         qualityItem.imageView.image = UIImage(systemName: K.SystemImageName.drop,
                                               withConfiguration: DesignManager.standartImageConfiguration)?.withRenderingMode(.alwaysTemplate)
         qualityItem.tintColor = colorThemeComponent.colorTheme.cityDetails.iconColors.humidity
-        qualityItem.titleLabel.text = "Humidity"
+        qualityItem.titleLabel.text = R.string.localizable.humidity()
         qualityItem.titleLabel.textColor = colorThemeComponent.colorTheme.cityDetails.weatherQuality.labelsColor
         qualityItem.subTitleLabel.text = "-"
         qualityItem.subTitleLabel.textColor = colorThemeComponent.colorTheme.cityDetails.weatherQuality.labelsSecondaryColor
@@ -54,7 +54,7 @@ class WeatherQualityInfoView: UIView {
         qualityItem.imageView.image = UIImage(systemName: K.SystemImageName.cloudFill,
                                               withConfiguration: DesignManager.standartImageConfiguration)?.withRenderingMode(.alwaysTemplate)
         qualityItem.tintColor = colorThemeComponent.colorTheme.cityDetails.iconColors.cloudiness
-        qualityItem.titleLabel.text = "Cloudiness"
+        qualityItem.titleLabel.text = R.string.localizable.cloudiness()
         qualityItem.titleLabel.textColor = colorThemeComponent.colorTheme.cityDetails.weatherQuality.labelsColor
         qualityItem.subTitleLabel.text = "-"
         qualityItem.subTitleLabel.textColor = colorThemeComponent.colorTheme.cityDetails.weatherQuality.labelsSecondaryColor
@@ -66,7 +66,7 @@ class WeatherQualityInfoView: UIView {
         qualityItem.imageView.image = UIImage(systemName: K.SystemImageName.wind,
                                               withConfiguration: DesignManager.standartImageConfiguration)?.withRenderingMode(.alwaysTemplate)
         qualityItem.tintColor = colorThemeComponent.colorTheme.cityDetails.iconColors.wind
-        qualityItem.titleLabel.text = "Wind"
+        qualityItem.titleLabel.text = R.string.localizable.wind()
         qualityItem.titleLabel.textColor = colorThemeComponent.colorTheme.cityDetails.weatherQuality.labelsColor
         qualityItem.subTitleLabel.text = "-"
         qualityItem.subTitleLabel.textColor = colorThemeComponent.colorTheme.cityDetails.weatherQuality.labelsSecondaryColor
@@ -78,7 +78,7 @@ class WeatherQualityInfoView: UIView {
         qualityItem.imageView.image = UIImage(systemName: K.SystemImageName.arrowDownLine,
                                               withConfiguration: DesignManager.standartImageConfiguration)?.withRenderingMode(.alwaysTemplate)
         qualityItem.tintColor = colorThemeComponent.colorTheme.cityDetails.iconColors.pressure
-        qualityItem.titleLabel.text = "Pressure"
+        qualityItem.titleLabel.text = R.string.localizable.pressure()
         qualityItem.titleLabel.textColor = colorThemeComponent.colorTheme.cityDetails.weatherQuality.labelsColor
         qualityItem.subTitleLabel.text = "-"
         qualityItem.subTitleLabel.textColor = colorThemeComponent.colorTheme.cityDetails.weatherQuality.labelsSecondaryColor
@@ -90,7 +90,7 @@ class WeatherQualityInfoView: UIView {
         qualityItem.imageView.image = UIImage(systemName: K.SystemImageName.eyeFill,
                                               withConfiguration: DesignManager.standartImageConfiguration)?.withRenderingMode(.alwaysTemplate)
         qualityItem.tintColor = colorThemeComponent.colorTheme.cityDetails.iconColors.visibility
-        qualityItem.titleLabel.text = "Visibility"
+        qualityItem.titleLabel.text = R.string.localizable.visibility()
         qualityItem.titleLabel.textColor = colorThemeComponent.colorTheme.cityDetails.weatherQuality.labelsColor
         qualityItem.subTitleLabel.text = "-"
         qualityItem.subTitleLabel.textColor = colorThemeComponent.colorTheme.cityDetails.weatherQuality.labelsSecondaryColor

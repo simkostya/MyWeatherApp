@@ -35,7 +35,6 @@
                                 <rect key="frame" x="20" y="790" width="374" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="YTf-ZO-IDF"/>
-                                    <constraint firstAttribute="width" constant="374" id="pVY-TS-S4x"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.29390224809999999" green="0.67847925419999999" blue="0.9763488173" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
