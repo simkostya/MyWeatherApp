@@ -374,7 +374,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 31 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 33 localization keys.
     struct localizable {
       /// en translation: Broken clouds
       ///
@@ -440,6 +440,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru-RU
       static let overcastClouds = Rswift.StringResource(key: "overcast.clouds", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru-RU"], comment: nil)
+      /// en translation: Press the button 🔍 to add a city
+      ///
+      /// Locales: en, ru-RU
+      static let cityEmptyDescription = Rswift.StringResource(key: "city.empty.description", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru-RU"], comment: nil)
       /// en translation: Pressure
       ///
       /// Locales: en, ru-RU
@@ -492,6 +496,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru-RU
       static let wind = Rswift.StringResource(key: "wind", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru-RU"], comment: nil)
+      /// en translation: You don't have any cities.
+      ///
+      /// Locales: en, ru-RU
+      static let cityEmptyTitle = Rswift.StringResource(key: "city.empty.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru-RU"], comment: nil)
       /// en translation: Your location
       ///
       /// Locales: en, ru-RU
@@ -741,6 +749,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("overcast.clouds", bundle: bundle, comment: "")
       }
 
+      /// en translation: Press the button 🔍 to add a city
+      ///
+      /// Locales: en, ru-RU
+      static func cityEmptyDescription(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("city.empty.description", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "city.empty.description"
+        }
+
+        return NSLocalizedString("city.empty.description", bundle: bundle, comment: "")
+      }
+
       /// en translation: Pressure
       ///
       /// Locales: en, ru-RU
@@ -934,6 +957,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("wind", bundle: bundle, comment: "")
+      }
+
+      /// en translation: You don't have any cities.
+      ///
+      /// Locales: en, ru-RU
+      static func cityEmptyTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("city.empty.title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "city.empty.title"
+        }
+
+        return NSLocalizedString("city.empty.title", bundle: bundle, comment: "")
       }
 
       /// en translation: Your location

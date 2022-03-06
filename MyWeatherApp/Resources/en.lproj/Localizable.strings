@@ -38,3 +38,5 @@
 "shower.rain" = "Shower rain";
 "mist" = "Mist";
 "moderate.rain" = "Moderate rain";
+"city.empty.title" = "You don't have any cities.";
+"city.empty.description" = "Press the button 🔍 to add a city";
