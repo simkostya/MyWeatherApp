@@ -39,7 +39,7 @@ class AddCityView: UIView {
         
         let shouldAddShadow = colorThemeComponent.colorTheme.addCityScreen.isShadowVisible
         if shouldAddShadow {
-//            DesignManager.setBackgroundStandartShadow(layer: view.layer)
+            DesignManager.setBackgroundStandartShadow(layer: view.layer)
         }
         return view
     }()
@@ -50,6 +50,7 @@ class AddCityView: UIView {
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         textField.textColor = colorThemeComponent.colorTheme.addCityScreen.labelsColor
         textField.tintColor = colorThemeComponent.colorTheme.addCityScreen.labelsColor
+        textField.becomeFirstResponder()
         
         var placeHolder = NSAttributedString(string: R.string.localizable.cityDescription(),
                                              attributes: [NSAttributedString.Key.foregroundColor: colorThemeComponent.colorTheme.addCityScreen.placeholderColor])

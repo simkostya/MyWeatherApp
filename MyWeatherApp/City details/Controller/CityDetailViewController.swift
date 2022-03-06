@@ -62,6 +62,10 @@ class CityDetailViewController: UIViewController, CityDetailViewControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeToBack))
+        rightSwipe.direction = .right
+        self.view.addGestureRecognizer(rightSwipe)
+        
         backButtonNavBarItem.action = #selector(backButtonPressed)
         backButtonNavBarItem.target = self
         navigationItem.leftBarButtonItem = backButtonNavBarItem
@@ -82,6 +86,10 @@ class CityDetailViewController: UIViewController, CityDetailViewControllerDelega
         updateTimer?.fire()
         
         setupBlurableNavBar()
+    }
+    
+    @objc func swipeToBack(sender:UISwipeGestureRecognizer) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func viewWillLayoutSubviews() {

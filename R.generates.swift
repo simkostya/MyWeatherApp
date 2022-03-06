@@ -434,8 +434,8 @@ struct R: Rswift.Validatable {
       static let moderateRain = Rswift.StringResource(key: "moderate.rain", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru-RU"], comment: nil)
       /// en translation: Now
       ///
-      /// Locales: en
-      static let nowTitle = Rswift.StringResource(key: "now.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// Locales: en, ru-RU
+      static let nowTitle = Rswift.StringResource(key: "now.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru-RU"], comment: nil)
       /// en translation: Overcast clouds
       ///
       /// Locales: en, ru-RU
@@ -486,8 +486,8 @@ struct R: Rswift.Validatable {
       static let uvIndex = Rswift.StringResource(key: "uv.index", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru-RU"], comment: nil)
       /// en translation: Visibility
       ///
-      /// Locales: en
-      static let visibility = Rswift.StringResource(key: "visibility", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// Locales: en, ru-RU
+      static let visibility = Rswift.StringResource(key: "visibility", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru-RU"], comment: nil)
       /// en translation: Wind
       ///
       /// Locales: en, ru-RU
@@ -713,7 +713,7 @@ struct R: Rswift.Validatable {
 
       /// en translation: Now
       ///
-      /// Locales: en
+      /// Locales: en, ru-RU
       static func nowTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("now.title", bundle: hostingBundle, comment: "")
@@ -908,7 +908,7 @@ struct R: Rswift.Validatable {
 
       /// en translation: Visibility
       ///
-      /// Locales: en
+      /// Locales: en, ru-RU
       static func visibility(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("visibility", bundle: hostingBundle, comment: "")
