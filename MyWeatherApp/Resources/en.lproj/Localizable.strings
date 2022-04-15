@@ -39,4 +39,5 @@
 "mist" = "Mist";
 "moderate.rain" = "Moderate rain";
 "city.empty.title" = "You don't have any cities.";
+"heavy.shower.rain" = "Heavy intensity shower rain";
 "city.empty.description" = "Press the button 🔍 to add a city";
